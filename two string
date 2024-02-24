@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+std::string mergeStrings(const std::string& word1, const std::string& word2) {
+    std::string merged;
+    size_t i = 0, j = 0;
+    
+    while (i < word1.size() || j < word2.size()) {
+        if (i < word1.size()) {
+            merged.push_back(word1[i++]);
+        }
+        if (j < word2.size()) {
+            merged.push_back(word2[j++]);
+        }
+    }
+    
+    return merged;
+}
+
+int main() {
+    std::string word1 = "abc";
+    std::string word2 = "pqr";
+    std::string merged = mergeStrings(word1, word2);
+    std::cout << merged << std::endl; // Output: "apbqcr"
+    return 0;
+}
