@@ -1,0 +1,91 @@
+// Contact.cpp
+
+#include "Contact.hpp"
+#include <iostream>
+
+Contact::Contact()
+{
+    // Constructor implementation, if needed
+}
+
+void Contact::add(std::string number, std::string name, std::string email, std::string title)
+{
+    info tmp;
+    tmp.name = name;
+    tmp.email = email;
+    tmp.title = title;
+    tmp.number = number;
+    data.push_back(tmp);
+}
+
+void Contact::add()
+{
+    std::string number;
+    std::string name, email, title;
+
+    std::cout << "Enter the Name: ";
+    std::cin >> name;
+    std::cout << "Enter the Email: ";
+    std::cin >> email;
+    std::cout << "Enter the Title: ";
+    std::cin >> title;
+    std::cout << "Enter the Number: ";
+    std::cin >> number;
+
+    add(number, name, email, title); // Call the parameterized add method with the provided details
+}
+
+void Contact::list()
+{
+    for (int i = 0; i < data.size(); i++)
+    {
+        std::cout << (i + 1) << ". " << data[i].title << " " << data[i].name << " " << data[i].email << " " << data[i].number << " " << std::endl;
+    }
+}
+void Contact::edit(int index, std::string number, std::string name, std::string email, std::string title)
+{
+    if (index >= 1 && index <= data.size())
+    {
+        info &contact = data[index - 1]; // Adjust index to 0-based indexing
+
+        // Update contact information
+        contact.number = number;
+        contact.name = name;
+        contact.email = email;
+        contact.title = title;
+
+        std::cout << "Contact information updated successfully." << std::endl;
+    }
+}
+void Contact::edit()
+{
+    int index;
+    std::string number;
+    std::string name, email, title;
+
+    std::cout << "Enter the index :";
+    std::cin >> index;
+    std::cout << "Enter the Number: ";
+    std::cin >> number;
+    std::cout << "Enter the New Name: ";
+    std::cin >> name;
+    std::cout << "Enter the New Email: ";
+    std::cin >> email;
+    std::cout << "Enter the New Title: ";
+    std::cin >> title;
+
+    edit(index, number, name, email, title);
+}
+void Contact::editPhoneNumber(int index) // Update method definition
+{
+    int Name;
+    std::cout << "Enter the new phone number: ";
+    std::cin >> Name;
+
+    if (index >= 1 && index <= data.size())
+    {
+        data[index - 1].number = Name;
+    }
+}
+
+
