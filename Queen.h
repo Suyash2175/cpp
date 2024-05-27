@@ -10,4 +10,4 @@ private:
     int row, col;
 };
 
-#endif // QUEEN_H
+#endif 
