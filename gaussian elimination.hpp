@@ -1,4 +1,4 @@
-#include "gaussian_elimination.hpp"
+#nclude "gaussian_elimination.hpp"
 #include <iostream>
 
 Matrix GaussianElimination::solve(const Matrix& matrix) {
