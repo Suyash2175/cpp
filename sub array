@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+
+bool canDivide(const std::vector<int>& nums, int maxSum, int m) {
+    int currentSum = 0;
+    int subarrays = 1;  // Start with one subarray
+    
+    for (int num : nums) {
+        if (currentSum + num > maxSum) {
+            // Need to start a new subarray
+            subarrays++;
+            currentSum = num;
+            if (subarrays > m) {
+                return false;  // More subarrays than allowed
+            }
+        } else {
+            currentSum += num;
+        }
+    }
+    return true;
+}
+
+int minimizeLargestSum(std::vector<int>& nums, int m) {
+    int left = *std::max_element(nums.begin(), nums.end());  // Max element in the array
+    int right = std::accumulate(nums.begin(), nums.end(), 0);  // Sum of all elements
+    
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        
+        if (canDivide(nums, mid, m)) {
+            right = mid;  // Try for a smaller maxSum
+        } else {
+            left = mid + 1;  // Increase maxSum
+        }
+    }
+    
+    return left;
+}
+
+int main() {
+    std::vector<int> nums = {7, 2, 5, 10, 8};
+    int m = 2;
+    
+    int result = minimizeLargestSum(nums, m);
+    std::cout << "The minimized largest sum of the subarrays is: " << result << std::endl;
+
+    return 0;
+}
