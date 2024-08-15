@@ -1,3 +1,4 @@
+//linked list
 #include <iostream>
 
 struct Node {
